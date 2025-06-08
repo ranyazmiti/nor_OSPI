@@ -20,7 +20,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32h5xx_it.h"
-#include "usart.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -84,13 +83,16 @@ void NMI_Handler(void)
   */
 void HardFault_Handler(void)
 {
-    HAL_GPIO_WritePin(GPIOI, GPIO_PIN_9, GPIO_PIN_SET); // Allume LED d'erreur
-    HAL_UART_Transmit(&huart1, (uint8_t*)"\r\nCRITICAL: Hard Fault Detected!\r\n", 34, HAL_MAX_DELAY);
-    while (1) {
-        HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_9); // Fait clignoter la LED d'erreur
-        HAL_Delay(100);
-    }
+  /* USER CODE BEGIN HardFault_IRQn 0 */
+
+  /* USER CODE END HardFault_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+    /* USER CODE END W1_HardFault_IRQn 0 */
+  }
 }
+
 /**
   * @brief This function handles Memory management fault.
   */
